@@ -9,14 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * <p>
- * 菜单权限表 服务实现类
- * </p>
- *
- * @author laoayu
- * @since 2023-03-07
- */
+
 @Service
 public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
 

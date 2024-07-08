@@ -5,14 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.Map;
 
-/**
- * <p>
- * 用户信息表 服务类
- * </p>
- *
- * @author laoayu
- * @since 2023-03-07
- */
+
 public interface IUserService extends IService<User> {
 
     Map<String, Object> login(User user);

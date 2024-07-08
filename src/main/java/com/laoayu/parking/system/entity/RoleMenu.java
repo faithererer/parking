@@ -7,13 +7,12 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+
 /**
- * <p>
- * 角色和菜单关联表
- * </p>
+ * 角色菜单
  *
- * @author laoayu
- * @since 2023-03-07
+ * @author faithererer
+ * @date 2024/07/08
  */
 @TableName("sys_role_menu")
 @AllArgsConstructor

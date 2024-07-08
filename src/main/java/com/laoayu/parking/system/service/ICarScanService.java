@@ -5,14 +5,7 @@ import com.laoayu.parking.system.entity.CarScan;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.laoayu.parking.system.entity.ParkInfo;
 
-/**
- * <p>
- * 车辆出入信息表 服务类
- * </p>
- *
- * @author laoayu
- * @since 2023-04-06
- */
+
 public interface ICarScanService extends IService<CarScan> {
 
     /**
@@ -24,6 +17,7 @@ public interface ICarScanService extends IService<CarScan> {
      * @param userName
      * @return
      */
+
     Page<CarScan> getCarScanList(Page<CarScan> page, String plateColor, String type, String direction, String userName);
 
     /**

@@ -6,13 +6,12 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+
 /**
- * <p>
- * 菜单权限表 Mapper 接口
- * </p>
+ * 菜单映射器
  *
- * @author laoayu
- * @since 2023-03-07
+ * @author faithererer
+ * @date 2024/07/08
  */
 public interface MenuMapper extends BaseMapper<Menu> {
     public List<Menu> getMenuListByUserId(@Param("userId") Long userId,@Param("pid") Long pid);

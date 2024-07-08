@@ -5,12 +5,10 @@ import com.laoayu.parking.system.entity.CarInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
- * <p>
- * 固定车信息 Mapper 接口
- * </p>
+ * 汽车信息映射器
  *
- * @author laoayu
- * @since 2023-03-18
+ * @author faithererer
+ * @date 2024/07/08
  */
 public interface CarInfoMapper extends BaseMapper<CarInfo> {
 

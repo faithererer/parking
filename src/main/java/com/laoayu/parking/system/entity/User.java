@@ -8,13 +8,12 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+
 /**
- * <p>
- * 用户信息表
- * </p>
+ * 用户
  *
- * @author laoayu
- * @since 2023-03-07
+ * @author faithererer
+ * @date 2024/07/08
  */
 @TableName("sys_user")
 @Data

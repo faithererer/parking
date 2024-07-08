@@ -11,13 +11,12 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+
 /**
- * <p>
- * 停车场信息表
- * </p>
+ * 公园信息
  *
- * @author laoayu
- * @since 2023-03-18
+ * @author faithererer
+ * @date 2024/07/08
  */
 @TableName("park_info")
 @Data

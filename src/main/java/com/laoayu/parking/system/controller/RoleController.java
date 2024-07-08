@@ -15,15 +15,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- * 角色信息表 前端控制器
- * </p>
- *
- * @author laoayu
- * @since 2023-03-07
- */
 
+/**
+ * 角色控制器
+ *
+ * @author faithererer
+ * @date 2024/07/08
+ */
 @Api(tags = {"角色接口列表"})
 @RestController
 @RequestMapping("/role")

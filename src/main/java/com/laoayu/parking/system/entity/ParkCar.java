@@ -7,13 +7,12 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+
 /**
- * <p>
- * 固定车和停车场关联表
- * </p>
+ * 停放车
  *
- * @author laoayu
- * @since 2023-03-23
+ * @author faithererer
+ * @date 2024/07/08
  */
 @TableName("park_car")
 @Data

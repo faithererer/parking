@@ -17,14 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- * 车辆出入信息表 服务实现类
- * </p>
- *
- * @author laoayu
- * @since 2023-04-06
- */
+
 @Service
 public class CarScanServiceImpl extends ServiceImpl<CarScanMapper, CarScan> implements ICarScanService {
 

@@ -7,14 +7,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- * 停车场信息表 服务类
- * </p>
- *
- * @author laoayu
- * @since 2023-03-18
- */
+
 public interface IParkInfoService extends IService<ParkInfo> {
 
     /**

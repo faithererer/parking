@@ -5,14 +5,7 @@ import com.laoayu.parking.system.entity.CarInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.laoayu.parking.system.entity.CarScan;
 
-/**
- * <p>
- * 固定车信息 服务类
- * </p>
- *
- * @author laoayu
- * @since 2023-03-18
- */
+
 public interface ICarInfoService extends IService<CarInfo> {
 
     void addCarInfo(CarInfo carInfo);

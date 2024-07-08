@@ -12,13 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
- * <p>
- * 菜单表
- * </p>
+ * 菜单
  *
- * @author laoayu
- * @since 2023-03-11
+ * @author faithererer
+ * @date 2024/07/08
  */
 @TableName("sys_menu")
 @Data

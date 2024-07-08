@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
 /**
- * <p>
- * 菜单权限表 前端控制器R
- * </p>
+ * 菜单控制器
  *
- * @author laoayu
- * @since 2023-03-07
+ * @author faithererer
+ * @date 2024/07/08
  */
 @Api(tags = "用户菜单接口")
 @RestController

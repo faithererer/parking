@@ -12,14 +12,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-/**
- * <p>
- * 订单信息表 服务实现类
- * </p>
- *
- * @author laoayu
- * @since 2023-03-18
- */
+
 @Service
 public class ParkOrderServiceImpl extends ServiceImpl<ParkOrderMapper, ParkOrder> implements IParkOrderService {
 

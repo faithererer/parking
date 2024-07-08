@@ -14,14 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- * 停车场信息表 服务实现类
- * </p>
- *
- * @author laoayu
- * @since 2023-03-18
- */
+
 @Service
 public class ParkInfoServiceImpl extends ServiceImpl<ParkInfoMapper, ParkInfo> implements IParkInfoService {
 

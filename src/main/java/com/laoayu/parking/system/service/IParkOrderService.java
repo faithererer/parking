@@ -8,14 +8,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- * 订单信息表 服务类
- * </p>
- *
- * @author laoayu
- * @since 2023-03-18
- */
+
 public interface IParkOrderService extends IService<ParkOrder> {
 
     Page<ParkOrder> getParkOrderList(Page<ParkOrder> page, String plateColor, String type, String parkName, String userName);

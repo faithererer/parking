@@ -10,13 +10,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-/**
- * @author: LaoAyu
- * @date: 2023/04/04
- **/
 
 /**
  * 图片上传接口：修改图片名称，避免图片名称冲突导致不可上传图片，并返回图片名称
+ *
+ * @author faithererer
+ * @date 2024/07/08
  */
 
 @Api(tags = {"图片上传接口"})

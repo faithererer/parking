@@ -9,12 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 
-/**
- * 启动程序
- *
- * @author laoayu
- * @data 2022-12-22
- */
+
 @EnableAsync//开启异步调用
 @SpringBootApplication
 @MapperScan("com.laoayu.parking.*.mapper")

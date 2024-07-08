@@ -14,13 +14,12 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+
 /**
- * <p>
- * 车辆出入信息表
- * </p>
+ * 汽车扫描
  *
- * @author laoayu
- * @since 2023-04-06
+ * @author faithererer
+ * @date 2024/07/08
  */
 @TableName("car_scan")
 @Data

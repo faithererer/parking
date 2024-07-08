@@ -14,13 +14,12 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+
 /**
- * <p>
- * 订单信息表
- * </p>
+ * 停车令
  *
- * @author laoayu
- * @since 2023-03-18
+ * @author faithererer
+ * @date 2024/07/08
  */
 @TableName("park_order")
 @Data

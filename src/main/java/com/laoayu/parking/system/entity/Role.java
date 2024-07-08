@@ -11,15 +11,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * <p>
- * 角色信息表
- * </p>
- *
- * @author laoayu
- * @since 2023-03-07
- */
 
+/**
+ * @author faithererer
+ * @date 2024/07/08
+ */
 @Data
 @TableName("sys_role")
 @NoArgsConstructor
@@ -33,6 +29,7 @@ public class Role implements Serializable {
      */
     @TableId(value = "role_id", type = IdType.AUTO)
     private Long roleId;
+
 
     /**
      * 角色名称

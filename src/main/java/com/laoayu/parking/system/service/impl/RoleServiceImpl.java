@@ -13,14 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * <p>
- * 角色信息表 服务实现类
- * </p>
- *
- * @author laoayu
- * @since 2023-03-07
- */
+
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
 

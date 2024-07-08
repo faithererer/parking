@@ -33,15 +33,13 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
-/**
- * <p>
- * 车辆出入信息表 前端控制器
- * </p>
- *
- * @author laoayu
- * @since 2023-04-06
- */
 
+/**
+ * 汽车扫描控制器
+ *
+ * @author admin
+ * @date 2024/07/08
+ */
 @Api(tags = {"车辆出入场扫描记录"})
 @RestController
 @RequestMapping("/carScan")

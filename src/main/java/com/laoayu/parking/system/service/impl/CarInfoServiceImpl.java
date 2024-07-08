@@ -16,14 +16,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * <p>
- * 固定车信息 服务实现类
- * </p>
- *
- * @author laoayu
- * @since 2023-03-18
- */
+
 @Service
 public class CarInfoServiceImpl extends ServiceImpl<CarInfoMapper, CarInfo> implements ICarInfoService {
 

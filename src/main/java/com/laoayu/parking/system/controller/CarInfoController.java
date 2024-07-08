@@ -17,13 +17,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
- * <p>
- * 固定车信息 前端控制器
- * </p>
+ * 汽车信息控制器
  *
- * @author laoayu
- * @since 2023-03-18
+ * @author admin
+ * @date 2024/07/08
  */
 @Api(tags = {"固定车管理接口列表"})
 @RestController

@@ -14,13 +14,12 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+
 /**
- * <p>
- * 固定车信息
- * </p>
+ * 汽车信息
  *
- * @author laoayu
- * @since 2023-03-18
+ * @author faithererer
+ * @date 2024/07/08
  */
 @TableName("car_info")
 @Data

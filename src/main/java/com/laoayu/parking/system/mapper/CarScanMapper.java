@@ -5,12 +5,10 @@ import com.laoayu.parking.system.entity.CarScan;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
- * <p>
- * 车辆出入信息表 Mapper 接口
- * </p>
+ * 汽车扫描测绘仪
  *
- * @author laoayu
- * @since 2023-04-06
+ * @author faithererer
+ * @date 2024/07/08
  */
 public interface CarScanMapper extends BaseMapper<CarScan> {
 

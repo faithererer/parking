@@ -7,13 +7,12 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+
 /**
- * <p>
- * 用户和角色关联表
- * </p>
+ * 用户角色
  *
- * @author laoayu
- * @since 2023-03-07
+ * @author faithererer
+ * @date 2024/07/08
  */
 @TableName("sys_user_role")
 @Data

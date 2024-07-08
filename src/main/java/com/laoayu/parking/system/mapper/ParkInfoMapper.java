@@ -10,14 +10,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
-/**
- * <p>
- * 停车场信息表 Mapper 接口
- * </p>
- *
- * @author laoayu
- * @since 2023-03-18
- */
 public interface ParkInfoMapper extends BaseMapper<ParkInfo> {
     public List<ParkInfo> getParkInfoByUserId (Long userId);
 

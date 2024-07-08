@@ -7,13 +7,12 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+
 /**
- * <p>
- * 用户停车场关联表，用于连接管理员所管理的停车场
- * </p>
+ * 用户停车
  *
- * @author laoayu
- * @since 2023-03-28
+ * @author faithererer
+ * @date 2024/07/08
  */
 @TableName("sys_user_park")
 @Data
