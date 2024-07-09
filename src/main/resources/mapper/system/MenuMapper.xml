@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.laoayu.parking.system.mapper.MenuMapper">
-    <select id="getMenuListByUserId" resultType="Menu">
+<mapper namespace="com.sdut.parking.system.mapper.MenuMapper">
+    <select id="getMenuListByUserId" resultType="com.sdut.parking.system.entity.Menu">
         SELECT
             distinct a.*
         FROM

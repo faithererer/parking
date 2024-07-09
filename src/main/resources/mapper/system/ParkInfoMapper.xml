@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.laoayu.parking.system.mapper.ParkInfoMapper">
-    <select id="getParkInfoByUserId" resultType="ParkInfo">
+<mapper namespace="com.sdut.parking.system.mapper.ParkInfoMapper">
+    <select id="getParkInfoByUserId" resultType="com.sdut.parking.system.entity.ParkInfo">
         SELECT
             distinct a.*
         FROM
@@ -14,7 +14,7 @@
             AND c.user_id = #{userId};
     </select>
 
-    <select id="selectParkInfoByParkId" resultType="com.laoayu.parking.system.entity.ParkInfo">
+    <select id="selectParkInfoByParkId" resultType="com.sdut.parking.system.entity.ParkInfo">
         SELECT distinct
             *
         FROM
@@ -37,7 +37,7 @@
             </if>
         </where>
     </select>
-    <select id="getParkInfoList" resultType="com.laoayu.parking.system.entity.ParkInfo">
+    <select id="getParkInfoList" resultType="com.sdut.parking.system.entity.ParkInfo">
         SELECT DISTINCT
         a.*
         FROM

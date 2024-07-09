@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.laoayu.parking.system.mapper.CarInfoMapper">
-    <select id="getCarInfoList" resultType="CarInfo">
+<mapper namespace="com.sdut.parking.system.mapper.CarInfoMapper">
+    <select id="getCarInfoList" resultType="com.sdut.parking.system.entity.CarInfo">
         select
             a.*,b.park_name
         from
@@ -32,7 +32,7 @@
         </where>
     </select>
 
-    <select id="getByPlateNumber" resultType="com.laoayu.parking.system.entity.CarInfo">
+    <select id="getByPlateNumber" resultType="com.sdut.parking.system.entity.CarInfo">
         SELECT
             a.*
         FROM
