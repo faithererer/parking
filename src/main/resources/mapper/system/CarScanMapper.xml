@@ -12,7 +12,7 @@
         <where>
             a.park_id = b.park_id
             AND b.user_id = c.user_id
-            <if test="userName != null and userName != ''">
+            <if test="userName != null and userName != '' or username='root'">
                 and user_name = #{userName}
             </if>
             <if test="plateColor != null and plateColor != ''">

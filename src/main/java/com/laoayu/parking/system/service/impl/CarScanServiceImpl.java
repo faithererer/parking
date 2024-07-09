@@ -1,6 +1,7 @@
 package com.laoayu.parking.system.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.laoayu.parking.common.holder.UserHolder;
 import com.laoayu.parking.common.vo.Result;
 import com.laoayu.parking.system.entity.CarInfo;
 import com.laoayu.parking.system.entity.CarScan;
@@ -62,6 +63,8 @@ public class CarScanServiceImpl extends ServiceImpl<CarScanMapper, CarScan> impl
             carScan.setType(0);//临时车
         }
         carScan.setDirection(0);//入场
+        // 用户
+        carScan.setUserId(UserHolder.getUser().getUserId());
 
         //写入出入场信息表
         this.baseMapper.insert(carScan);
@@ -74,7 +77,7 @@ public class CarScanServiceImpl extends ServiceImpl<CarScanMapper, CarScan> impl
         parkOrder.setType(carScan.getType());   //是否为固定车
         parkOrder.setPlateColor(carScan.getPlateColor());   //车牌颜色
         parkOrder.setPlateNum(carScan.getPlateNum());   //车牌号
-
+        parkOrder.setUserId(UserHolder.getUser().getUserId());
         parkOrderMapper.insert(parkOrder);
 
 //        parkOrderMapper.insert(new ParkOrder(null,null,carScan.getParkId(),carScan.getType(),
@@ -95,6 +98,7 @@ public class CarScanServiceImpl extends ServiceImpl<CarScanMapper, CarScan> impl
         }else {
             carScan.setType(0);//临时车
         }
+        carScan.setUserId(UserHolder.getUser().getUserId());
         carScan.setDirection(1);//出场
 
         //写入出入场信息表

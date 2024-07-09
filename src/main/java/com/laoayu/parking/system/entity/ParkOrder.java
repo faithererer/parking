@@ -99,4 +99,9 @@ public class ParkOrder implements Serializable {
     @TableField(exist = false)
     private BigDecimal parkRule;
 
+    /**
+     * 用户身份
+     */
+    Long userId;
+
 }

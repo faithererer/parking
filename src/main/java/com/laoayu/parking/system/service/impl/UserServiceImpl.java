@@ -86,6 +86,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             data.put("user",user);
             return data;
         } else{
+            user.setStatus("1");
             addUser(user);
             // 创建jwt
             String token = jwtUtil.createToken(loginUser);

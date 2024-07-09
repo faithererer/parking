@@ -45,7 +45,12 @@ public class ParkInfoController {
         List<ParkInfo> parkInfoList = parkInfoService.list();
         return Result.success(parkInfoList,"查询成功");
     }
-
+    @ApiOperation("查询所有可以停车场接口")
+    @GetMapping("/all/free")
+    public Result<List<ParkInfo>> getAllFreeParkInfoList(){
+        List<ParkInfo> parkInfoList = parkInfoService.query().ge("park_spare",1).list();
+        return Result.success(parkInfoList,"查询成功");
+    }
     @ApiOperation("查询所有停车场接口")
     @GetMapping("/getParkInfoList")
     public Result<Map<String, Object>> getParkInfoList(@RequestParam(value = "parkName",required = false) String parkName,

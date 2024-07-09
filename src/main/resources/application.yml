@@ -35,7 +35,7 @@ mybatis-plus:
   type-aliases-package: com.laoayu.parking.*.entity
 
 
-pic_path : F:\\WorkSpace\\JavaWeb\parking\\car_repo\\
+pic_path : F:/WorkSpace/JavaWeb/parking/car_repo/
 
 github:
   client:

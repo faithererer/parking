@@ -1,6 +1,8 @@
 package com.laoayu.parking.system.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.laoayu.parking.common.holder.UserHolder;
 import com.laoayu.parking.common.utils.ApiOcrUtil;
 import com.laoayu.parking.common.utils.DateUtil;
 import com.laoayu.parking.common.vo.Result;
@@ -8,10 +10,7 @@ import com.laoayu.parking.common.vo.TimeVo;
 import com.laoayu.parking.system.entity.*;
 import com.laoayu.parking.system.mapper.ParkInfoMapper;
 import com.laoayu.parking.system.mapper.ParkOrderMapper;
-import com.laoayu.parking.system.service.ICarInfoService;
-import com.laoayu.parking.system.service.ICarScanService;
-import com.laoayu.parking.system.service.IParkInfoService;
-import com.laoayu.parking.system.service.IParkOrderService;
+import com.laoayu.parking.system.service.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +58,8 @@ public class CarScanController {
 
     @Resource
     private ICarInfoService carInfoService;
+    @Resource
+    private IUserParkService userParkService;
     @Value("${pic_path}")
     String PATH;
 
@@ -70,12 +71,27 @@ public class CarScanController {
                                                       @RequestParam(value = "userName",required = false) String userName,
                                                       @RequestParam(value = "pageNum",required = false) Long pageNum,
                                                       @RequestParam(value = "pageSize",required = false) Long pageSize){
+        Page<CarScan> curPage = null;
+        if(userName.equals("root")) {
+            Page<CarScan> page = scanService.getCarScanList(new Page<>(pageNum, pageSize), plateColor, type, direction, userName);
+            curPage = page;
+        }
+        else{
+            Page<CarScan> page = scanService.getBaseMapper().selectPage(new Page<>(pageNum, pageSize),
+                    new QueryWrapper<CarScan>()
+                            .eq("user_id", UserHolder.getUser().getUserId())
 
-        Page<CarScan> page = scanService.getCarScanList(new Page<>(pageNum,pageSize),plateColor,type,direction,userName);
-
+            );
+            curPage = page;
+        }
+        curPage.getRecords().forEach((carScan -> {
+            carScan.setParkName(parkInfoService.selectParkInfoByParkId(
+                    carScan.getParkId()
+            ).getParkName());
+        }));
         Map<String,Object> data = new HashMap<>();
-        data.put("total",page.getTotal());
-        data.put("rows",page.getRecords());
+        data.put("total",curPage.getTotal());
+        data.put("rows",curPage.getRecords());
 
         return Result.success(data);
     }
@@ -198,6 +214,20 @@ public class CarScanController {
             parkInfo1.setParkId(parkInfo.getParkId());
 
             parkInfoMapper.updateById(parkInfo1);
+            Long userId = UserHolder.getUser().getUserId();
+            UserPark userPark = new UserPark();
+            userPark.setUserId(userId);
+            userPark.setParkId(parkInfo.getParkId());
+            boolean exists = userParkService.getBaseMapper().exists(new QueryWrapper<UserPark>()
+                    .eq("user_id", userId)
+                    .eq("park_id", parkInfo.getParkId()));
+            if(exists){
+                userParkService.getBaseMapper().update(userPark,new QueryWrapper<UserPark>()
+                        .eq("user_id", userId)
+                        .eq("park_id", parkInfo.getParkId()));
+            }else{
+                userParkService.getBaseMapper().insert(userPark);
+            }
 
         } else if (parkOrder != null){
 
@@ -235,7 +265,10 @@ public class CarScanController {
         ParkInfo parkInfo = selectParkInfoByParkId(carScan.getParkId());
 
         //查询未完成订单
-        ParkOrder parkOrder = selectParkOrderByParkIdAndPlateNum(carScan.getParkId(),carScan.getPlateNum());
+//        ParkOrder parkOrder = selectParkOrderByParkIdAndPlateNum(carScan.getParkId(),carScan.getPlateNum());
+        ParkOrder parkOrder = parkOrderMapper.selectOne(new QueryWrapper<ParkOrder>()
+                .eq("user_id", UserHolder.getUser().getUserId())
+                .eq("plate_num", carScan.getPlateNum()));
 
         //查询固定车查询后的结果用于判断固定车时间是否过期
         CarInfo carInfo = selectCarInfoByParkIdAndPlateNum(carScan.getParkId(),carScan.getPlateNum());
@@ -262,6 +295,10 @@ public class CarScanController {
             ParkInfo parkInfo1 = new ParkInfo();
             parkInfo1.setParkSpare(parkInfo.getParkSpare()+1);//剩余车位数
             parkInfo1.setParkId(parkInfo.getParkId());
+
+            userParkService.getBaseMapper().delete(new QueryWrapper<UserPark>()
+                    .eq("user_id",UserHolder.getUser().getUserId())
+                    .eq("park_id",parkInfo.getParkId()));
             try {
                 TimeVo time = DateUtil.time(parkOrder.getEntryTime(), carScan.getExitTime());//时间差
                 Long min = 0l;

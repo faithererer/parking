@@ -2,9 +2,12 @@ package com.laoayu.parking.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.laoayu.parking.common.holder.UserHolder;
 import com.laoayu.parking.common.vo.Result;
+import com.laoayu.parking.system.entity.CarScan;
 import com.laoayu.parking.system.entity.ParkOrder;
 import com.laoayu.parking.system.service.ICarInfoService;
+import com.laoayu.parking.system.service.IParkInfoService;
 import com.laoayu.parking.system.service.IParkOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,6 +39,8 @@ public class ParkOrderController {
 
     @Resource
     private ICarInfoService carInfoService;
+    @Resource
+    IParkInfoService parkInfoService;
 
     @ApiOperation("查询根据条件查对应停车场订单，根据登录的用户名查对应List")
     @GetMapping("/getParkOrderList")
@@ -46,11 +51,29 @@ public class ParkOrderController {
                                                         @RequestParam(value = "pageNum",required = false) Long pageNum,
                                                         @RequestParam(value = "pageSize",required = false) Long pageSize){
 
-        Page<ParkOrder> page = parkOrderService.getParkOrderList(new Page<>(pageNum,pageSize),plateColor,type,parkName,userName);
+        Page<ParkOrder> curPage = null;
+        if(userName.equals("root")) {
+            Page<ParkOrder> page = parkOrderService.getParkOrderList(new Page<>(pageNum,pageSize),plateColor,type,parkName,userName);
+            curPage = page;
+        }
+        else {
+            Page<ParkOrder> page = parkOrderService.getBaseMapper().selectPage(new Page<>(pageNum, pageSize),
+                    new QueryWrapper<ParkOrder>()
+                            .eq("user_id", UserHolder.getUser().getUserId())
+            );
+            curPage = page;
+            curPage.getRecords().forEach((carScan -> {
+                carScan.setParkName(parkInfoService.selectParkInfoByParkId(
+                        carScan.getParkId()
+                ).getParkName());
+            }));
+        }
+
+
 
         Map<String,Object> data = new HashMap<>();
-        data.put("total",page.getTotal());
-        data.put("rows",page.getRecords());
+        data.put("total",curPage.getTotal());
+        data.put("rows",curPage.getRecords());
 
         return Result.success(data);
     }

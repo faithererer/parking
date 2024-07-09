@@ -100,4 +100,16 @@ public class CarScan implements Serializable {
     @TableField(exist = false)
     private BigDecimal parkFee;
 
+
+    /**
+     * 用户身份
+     */
+    Long userId;
+
+    /**
+     * 公园名称
+     */
+    @TableField(exist = false)
+    String parkName;
+
 }
