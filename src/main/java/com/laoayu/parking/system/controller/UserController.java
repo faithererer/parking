@@ -56,6 +56,15 @@ public class UserController {
         return Result.fail(202,"用户名或密码错误");
     }
 
+    @ApiOperation("github用户登录接口")
+    @PostMapping("/loginGithub")
+    public Result<Map<String,Object>> loginByGitHub(@RequestBody User user){
+        Map<String,Object> data = userService.loginByGithub(user);
+        if(data != null){
+            return Result.success(data);
+        }
+        return Result.fail(202,"用户名或密码错误");
+    }
     @ApiOperation("获取用户信息接口")
     @GetMapping("/info")
     public Result<Map<String,Object>> getUserInfo(@RequestParam("token") String token){
@@ -117,11 +126,6 @@ public class UserController {
             return Result.fail("该用户名已被使用，请重新输入");
         }
 
-//        //密码加密
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//
-//        userService.addUser(user);
-//        return Result.success("新增用户成功");
     }
 
     private User selectUserByUserName(String userName) {

@@ -1,7 +1,5 @@
 package com.laoayu.parking.system.controller;
 
-import ch.qos.logback.core.util.FileUtil;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.laoayu.parking.common.utils.ApiOcrUtil;
 import com.laoayu.parking.common.utils.DateUtil;
@@ -16,21 +14,17 @@ import com.laoayu.parking.system.service.IParkInfoService;
 import com.laoayu.parking.system.service.IParkOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -65,7 +59,7 @@ public class CarScanController {
 
     @Resource
     private ICarInfoService carInfoService;
-    @Value("pic_path")
+    @Value("${pic_path}")
     String PATH;
 
     @ApiOperation("查询根据条件查对应停车场车辆扫描结果，根据登录的用户名查对应List")
@@ -121,6 +115,7 @@ public class CarScanController {
         // 出入场车牌识别图片存储地址
 
         String filePath = PATH;
+        System.out.println("文件路径："+filePath);
         File fileDir = new File(filePath);
         try {
             // 不传图片，此处捕获空指针异常，代码照常运行
@@ -150,7 +145,7 @@ public class CarScanController {
                         uploadFile.transferTo(pic);
                         //返回成功结果，附带文件的相对路径
                         // plateLicense传入的应该为文件而非路径
-                        Map plate= apiOcrUtil.plateLicense(pic.getAbsolutePath());
+                        Map<String, Object> plate= apiOcrUtil.plateLicense(pic.getAbsolutePath());
                         // 判断 plate这个map中是否为空
                         if(plate.isEmpty()){
                             return Result.fail("识别失败");

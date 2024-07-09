@@ -14,7 +14,6 @@ spring:
     port: 6379
     host: 192.168.122.1
     database: 14
-
   servlet:
     multipart:
       max-file-size: 10MB
@@ -36,5 +35,9 @@ mybatis-plus:
   type-aliases-package: com.laoayu.parking.*.entity
 
 
-pic_path : D:\\ParkingManagementSystem\\Parking\\park_pic\\d208c933c9744152a4dbbfb4c90b9b44test19.jpg
+pic_path : F:\\WorkSpace\\JavaWeb\parking\\car_repo\\
 
+github:
+  client:
+    id: Ov23lixjmwtogrM5HDHL
+    secret: 274b18204301887b4baa06c381b96ec673ab83f6

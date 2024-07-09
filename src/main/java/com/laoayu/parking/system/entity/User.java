@@ -99,4 +99,6 @@ public class User implements Serializable {
     @TableField(exist = false)
     private String role;
 
+    private String githubId;
+
 }

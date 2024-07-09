@@ -10,6 +10,8 @@ public interface IUserService extends IService<User> {
 
     Map<String, Object> login(User user);
 
+    Map<String, Object> loginByGithub(User user);
+
     Map<String, Object> getUserInfo(String token);
 
     void logout(String token);
@@ -28,4 +30,5 @@ public interface IUserService extends IService<User> {
      * @return
      */
     User selectUserByUserName(String userName);
+
 }

@@ -1,11 +1,14 @@
 package com.laoayu.parking.system.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.laoayu.parking.common.vo.Result;
 import com.laoayu.parking.system.entity.CarInfo;
 import com.laoayu.parking.system.entity.ParkInfo;
+import com.laoayu.parking.system.entity.ParkOrder;
 import com.laoayu.parking.system.service.IParkInfoService;
+import com.laoayu.parking.system.service.IParkOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -32,6 +36,8 @@ public class ParkInfoController {
 
     @Autowired
     private IParkInfoService parkInfoService;
+    @Autowired
+    private IParkOrderService parkOrderService;
 
     @ApiOperation("查询所有停车场接口")
     @GetMapping("/all")
@@ -110,6 +116,8 @@ public class ParkInfoController {
 
         return Result.success(data);
     }
+
+
 
 
 }

@@ -36,7 +36,9 @@ public class MyInterceptorConfig implements WebMvcConfigurer {
                         "/file/upLoad",//将文件上传接口放开
                         "/carScan/carScan",//将文件上传接口放开
                         "/pic/**",//文件访问路径放开
-                        "/oauth/**"
+                        "/oauth/**",
+                        "/api/auth/github/**",// github登录放开,
+                        "/user/loginGithub"
                 );
     }
 

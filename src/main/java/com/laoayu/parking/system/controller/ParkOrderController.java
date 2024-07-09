@@ -1,5 +1,6 @@
 package com.laoayu.parking.system.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.laoayu.parking.common.vo.Result;
 import com.laoayu.parking.system.entity.ParkOrder;
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 /**
@@ -81,6 +83,25 @@ public class ParkOrderController {
         List<Map<String, Object>> dailyPayments = parkOrderService.getDailyPayments(startDate, endDate);
 
         return Result.success(dailyPayments);
+    }
+
+    /**
+     * 按类型获取总收入
+     *
+     * @return 结果<列表 < 映射 < 字符串 ， 字符串>>>
+     */
+    @GetMapping("/type/income")
+    public Result<List<Map<String,String>>> getTotalIncomeByType(){
+        List<Map<String, String>> list = parkOrderService.getBaseMapper().selectList(new QueryWrapper<ParkOrder>()
+                        .select("park_id", "SUM(park_fee) as totalIncome")
+                        .groupBy("park_id"))
+                .stream()
+                .map(record -> Map.of(
+                        "park_id", record.getParkId() != null ? record.getParkId().toString() : "N/A",
+                        "totalIncome", record.getParkFee() != null ? record.getParkFee().toString() : "0"
+                ))
+                .collect(Collectors.toList());
+        return Result.success(list);
     }
 
 }

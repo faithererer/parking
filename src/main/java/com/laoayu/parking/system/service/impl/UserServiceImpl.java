@@ -2,6 +2,7 @@ package com.laoayu.parking.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.laoayu.parking.common.utils.JwtUtil;
+import com.laoayu.parking.common.vo.Result;
 import com.laoayu.parking.system.entity.*;
 import com.laoayu.parking.system.mapper.UserMapper;
 import com.laoayu.parking.system.mapper.UserParkMapper;
@@ -19,8 +20,6 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
@@ -70,7 +69,32 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         return null;
     }
-
+    @Override
+    @Transactional
+    public Map<String, Object> loginByGithub(User user) {
+        // 根据用户名查询
+        LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(User::getUserName,user.getUserName());
+        User loginUser = this.baseMapper.selectOne(wrapper);
+        // 结果不为空，并且密码和传入密码匹配，则生成token
+        if(loginUser != null && loginUser.getGithubId().equals(user.getGithubId())){
+            // 创建jwt
+            String token = jwtUtil.createToken(loginUser);
+            // 返回数据
+            Map<String, Object> data = new HashMap<>();
+            data.put("token",token);
+            data.put("user",user);
+            return data;
+        } else{
+            addUser(user);
+            // 创建jwt
+            String token = jwtUtil.createToken(loginUser);
+            Map<String, Object> data = new HashMap<>();
+            data.put("token",token);
+            data.put("user",user);
+            return data;
+        }
+    }
     @Override
     public Map<String, Object> getUserInfo(String token) {
         User loginUser = null;
@@ -226,4 +250,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public User selectUserByUserName(String userName) {
         return userMapper.selectUserByUserName(userName);
     }
+
+
+
+
 }
